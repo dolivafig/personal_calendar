@@ -1,5 +1,5 @@
 var today = dayjs();
-console.log(today)
+// console.log(today)
 var dayWeek = today.format("dddd h:mma");
 var dayHour = today.format("H");
 $("#currentDay").text(dayWeek);
@@ -8,13 +8,14 @@ $(".saveBtn").on("click", function(){
     var id = $(this).parent().attr("id");
     var value = $(this).siblings(".description").val();
     localStorage.setItem(id, value);
+
 })
 
 $(".time-block").each(function(){
     var time = $(this).attr("id").split("-")[1];
-    console.log(time)
-    console.log(dayHour)
-    
+    // console.log(time)
+    // console.log(dayHour)
+
     if (time < dayHour){
         $(this).addClass("past")
     } else if(time === dayHour){
@@ -22,4 +23,12 @@ $(".time-block").each(function(){
     } else if(time > dayHour){
         $(this).addClass("future")
     }
+})
+
+$(".time-block").each(function(){
+    var time1 = $(this).attr("id");
+    var dataInput = localStorage.getItem(time1)
+    $(this).children(".description").text(dataInput);
+    // console.log(time1)
+    // console.log(dataInput)
 })
